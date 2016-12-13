@@ -99,39 +99,41 @@ public class SliderObject : MonoBehaviour {
 
     void showSarcophage()
     {
-        ladaoutside.GetComponent<MeshRenderer>().material.shader = Shader.Find("Standard");
+        //ladaoutside.GetComponent<MeshRenderer>().material.shader = Shader.Find("Standard");
+        
         //ladaoutside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 1.0f);
         //ladainside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 1.0f);
         //ladaoutside.GetComponent<MeshRenderer>().enabled = true;
-        //ladainside.GetComponent<MeshRenderer>().enabled = true;
-        //mummy.GetComponent<SkinnedMeshRenderer>().enabled = true;
-        //obi.GetComponent<MeshRenderer>().enabled = true;
+        ladainside.GetComponent<MeshRenderer>().enabled = true;
+        mummy.GetComponent<SkinnedMeshRenderer>().enabled = true;
+        obi.GetComponent<MeshRenderer>().enabled = true;
     }
 
     void showMummy()
     {
-        Shader shader = Shader.Find("Mobile/Mobile-XrayEffect");
+        /*Shader shader = Shader.Find("Mobile/Mobile-XrayEffect");
         ladaoutside.GetComponent<MeshRenderer>().material.shader = Shader.Find("Mobile/Mobile-XrayEffect");
         ladainside.GetComponent<MeshRenderer>().material.shader = Shader.Find("Mobile/Mobile-XrayEffect");
         ladaoutside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 0.3f);
         ladainside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 0.1f);
-        mummy.GetComponent<SkinnedMeshRenderer>().material.shader = Shader.Find("Standard");
+        mummy.GetComponent<SkinnedMeshRenderer>().material.shader = Shader.Find("Standard");*/
+
         //ladaoutside.GetComponent<MeshRenderer>().enabled = false;
-        //ladainside.GetComponent<MeshRenderer>().enabled = false;
-        //mummy.GetComponent<SkinnedMeshRenderer>().enabled = true;
-        //obi.GetComponent<MeshRenderer>().enabled = true;
+        ladainside.GetComponent<MeshRenderer>().enabled = true;
+        mummy.GetComponent<SkinnedMeshRenderer>().enabled = true;
+        obi.GetComponent<MeshRenderer>().enabled = true;
     }
 
     void showObi()
     {
-        ladaoutside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 0.05f);
+        /*ladaoutside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 0.05f);
         ladainside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 0.05f);
         mummy.GetComponent<SkinnedMeshRenderer>().material.shader = Shader.Find("Mobile/Mobile-XrayEffect");
-        mummy.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_Inside", 0.1f);
+        mummy.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_Inside", 0.1f);*/
        
         //ladaoutside.GetComponent<MeshRenderer>().enabled = false;
-        //ladainside.GetComponent<MeshRenderer>().enabled = false;
-        //mummy.GetComponent<SkinnedMeshRenderer>().enabled = false;
-        //obi.GetComponent<MeshRenderer>().enabled = true;
+        ladainside.GetComponent<MeshRenderer>().enabled = true;
+        mummy.GetComponent<SkinnedMeshRenderer>().enabled = false;
+        obi.GetComponent<MeshRenderer>().enabled = true;
     }
 }
