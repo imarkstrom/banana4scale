@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+    <Tracking>
+        <ImageTarget name="sarkofag" size="1.000000 1.407212"/>
+        <ImageTarget name="BananaScaledBox.Front" size="1.500000 1.429740"/>
+        <ImageTarget name="BananaScaledBox.Right" size="2.600000 1.429958"/>
+        <ImageTarget name="BananaScaledBox.Left" size="2.600000 1.429958"/>
+        <ImageTarget name="BananaScaledBox.Back" size="1.500000 1.429740"/>
+        <ImageTarget name="BananaScaledBox.Top" size="1.500000 2.599605"/>
+        <ImageTarget name="BananaScaledBox.Bottom" size="1.500000 2.599605"/>
+        <MultiTarget name="BananaScaledBox">
+            <Part name="BananaScaledBox.Left" translation="-0.75 0 0" rotation="AD: 0 1 0 -90"/>
+            <Part name="BananaScaledBox.Right" translation="0.75 0 0" rotation="AD: 0 1 0 90"/>
+            <Part name="BananaScaledBox.Front" translation="0 0 1.2999999523162842" rotation="AD: 1 0 0 0"/>
+            <Part name="BananaScaledBox.Back" translation="0 0 -1.2999999523162842" rotation="AD: 0 1 0 180"/>
+            <Part name="BananaScaledBox.Top" translation="0 0.7149999737739563 0" rotation="AD: 1 0 0 -90"/>
+            <Part name="BananaScaledBox.Bottom" translation="0 -0.7149999737739563 0" rotation="AD: 1 0 0 90"/>
+        </MultiTarget>
+    </Tracking>
+</QCARConfig>

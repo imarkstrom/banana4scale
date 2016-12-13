@@ -6,17 +6,17 @@ Shader "Custom/VideoBackground" {
         _MainTex ("Base (RGB)", 2D) = "white" {}
     }
     SubShader {
-        Tags {"Queue"="geometry-11" "RenderType"="opaque" }
+        Tags {"Queue"="geometry-8" "RenderType"="opaque" }
         Pass {
-            ZWrite Off
+            ZWrite On
             Cull Off
             Lighting Off
 			
-			Stencil {
-                Ref 250
-                Comp Always
-                Pass Replace
-            }
+			//Stencil {
+            //    Ref 250
+            //   Comp Always
+            //    Pass Replace
+            //}
             
             SetTexture [_MainTex] {
                 combine texture 

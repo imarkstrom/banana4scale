@@ -4,7 +4,7 @@ Shader "DepthMask" {
         // Render the mask after regular geometry, but before masked geometry and
         // transparent things.
        
-        Tags {"Queue" = "Geometry-10" }
+        Tags {"Queue" = "Geometry-7" }
        
         // Turn off lighting, because it's expensive and the thing is supposed to be
         // invisible anyway.
