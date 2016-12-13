@@ -10,11 +10,13 @@ public class CarverScript : MonoBehaviour
 	//public GameObject depthmask;
 	public GameObject depthmaskpasstwo;
 	public GameObject videoplane;
+	public ParticleSystem woweffect;
 
 	// Use this for initialization
 	public float zoomdistance = 5;
 	private bool carve;
 
+	public GameObject magnifyingglass;
 
 	void Start ()
 	{
@@ -42,8 +44,10 @@ public class CarverScript : MonoBehaviour
 			videoplane.transform.localPosition = new Vector3 (0, 0, 0.5f);
 			videoplane.transform.localScale = videoplane.transform.localScale / lastplace / 2.0f; 
 			cam.nearClipPlane = 0.01f;
+			magnifyingglass.SetActive (true);
 		} else {
-			cam.nearClipPlane = 1.5f;	
+			cam.nearClipPlane = 1.5f;
+			magnifyingglass.SetActive (false);
 		}
 		Vector3 mummyposition = mummy.transform.position;
 		Vector3 cameraposition = cam.transform.position;
@@ -62,7 +66,7 @@ public class CarverScript : MonoBehaviour
 		*/
 
 		float cameradifference = cameradiff.magnitude;
-		float maskscale = (zoomdistance / cameradifference - 1) * 0.2f;
+		float maskscale = (zoomdistance / cameradifference - 1) * 0.5f;
 		if (maskscale > 10f) {
 			maskscale = 10f;
 		}
@@ -80,10 +84,18 @@ public class CarverScript : MonoBehaviour
 			depthmaskpasstwo.transform.localPosition = new Vector3 (sarcloc.x / sarcloc.z * 10f, sarcloc.y / sarcloc.z * 10f, 10);
 		} catch {
 		}*/
-		if (carve)
-			depthmaskpasstwo.transform.localScale = new Vector3 (maskscale, maskscale, maskscale) * 15.0f;
-		else
-			depthmaskpasstwo.transform.localScale = new Vector3 (200, 200, 1) * 0.0f;
-
+		ParticleSystem.ShapeModule sm = woweffect.shape;
+		if (carve && maskscale > 0.01) {
+			depthmaskpasstwo.SetActive (true);
+			depthmaskpasstwo.transform.localScale = new Vector3 (maskscale, maskscale, maskscale) * 10.0f;
+			magnifyingglass.transform.localScale = depthmaskpasstwo.transform.localScale / 90f;
+			print (maskscale);
+			sm.radius = maskscale * 0.12f;
+		} else {
+			//depthmaskpasstwo.transform.localScale = new Vector3 (200, 200, 1) * 0.25f;
+			depthmaskpasstwo.SetActive (false);
+			magnifyingglass.transform.localScale = Vector3.zero;
+			sm.radius = 1000000000;
+		}
 	}
 }

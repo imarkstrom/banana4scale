@@ -50,37 +50,28 @@ public class SliderObject : MonoBehaviour
 			}
 		}
 		if (Input.touchCount > 0) {
-			ray = Camera.main.ScreenPointToRay (Input.GetTouch (0).position);
-
+			ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+			print (ray);
+			float newz = 0;
+			bool didhit = false;
 			if (Physics.Raycast (ray, out hit)) {
-				if (hit.collider.gameObject.name == "SlideBar") {
-					float z = hit.point.z;
-					/*if (z < 0.15f && z > -0.15f)
-                    {
-                        z = 0;
-                    }
-                    else if (z < -0.15f)
-                    {
-                        z = -0.3f;
-                    }
-                    else
-                    {
-                        z = 0.3f;
-                    }*/
-					if (z > 0.3f) {
-						z = 0.3f;
-					} else if (z < -0.3f) {
-						z = -0.3f;
-					}
-					transform.position = new Vector3 (0.4f, 0f, z);
-					float zper = z / 0.3f;
-					if (zper == 1) {
-						showSarcophage ();
-					} else if (z >= 0) {
-						showMummy ();
-					} else {
-						showObi ((1 + zper));
-					}
+				print (hit.collider.gameObject);
+				if (hit.collider.gameObject == sarkofagbutton) {
+					newz = hit.collider.gameObject.transform.localPosition.z;
+					showSarcophage ();
+					didhit = true;
+				} else if (hit.collider.gameObject == mummybutton) {
+					newz = hit.collider.gameObject.transform.localPosition.z;
+					showMummy ();
+					didhit = true;
+				} else if (hit.collider.gameObject == obibutton) {
+					newz = hit.collider.gameObject.transform.localPosition.z;
+					showObi (1);
+					didhit = true;
+				}
+				if (didhit) {
+					Vector3 originalposition = transform.localPosition;
+					transform.localPosition = new Vector3 (originalposition.x, originalposition.y, newz);
 				}
 			}
 		}

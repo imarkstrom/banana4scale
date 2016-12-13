@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: DefaultTarget
-  m_Shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: MagnifierHandle
+  m_Shader: {fileID: 4800000, guid: dcc4f90b79b6b42f0a012aae9792eb0c, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -49,7 +49,13 @@ Material:
         name: _MainTex
       second:
         m_Texture: {fileID: 0}
-        m_Scale: {x: -1, y: -1}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MetallicGlossMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _OcclusionMap
@@ -59,12 +65,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     - first:
         name: _ParallaxMap
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _SpecGlossMap
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -92,6 +92,12 @@ Material:
         name: _GlossyReflections
       second: 1
     - first:
+        name: _Inside
+      second: 0
+    - first:
+        name: _Metallic
+      second: 0
+    - first:
         name: _Mode
       second: 0
     - first:
@@ -100,6 +106,12 @@ Material:
     - first:
         name: _Parallax
       second: 0.02
+    - first:
+        name: _Rim
+      second: 1.2
+    - first:
+        name: _Shininess
+      second: 0.078125
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -118,13 +130,7 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 0}
+      second: {r: 0.08001147, g: 0, b: 0.0578586, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
-    - first:
-        name: _SpecColor
-      second: {r: 0.2, g: 0.2, b: 0.2, a: 0}
---- !u!1002 &2100001
-EditorExtensionImpl:
-  serializedVersion: 6
