@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SliderObject : MonoBehaviour {
+public class SliderObject : MonoBehaviour
+{
 
     private Ray ray;
     private RaycastHit hit;
@@ -13,12 +14,14 @@ public class SliderObject : MonoBehaviour {
     public GameObject obi;
 
     // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         if (Input.touchCount > 0)
         {
             ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
@@ -27,9 +30,8 @@ public class SliderObject : MonoBehaviour {
             {
                 if (hit.collider.gameObject.name == "SlideBar")
                 {
-                    //Vector3 fingerPos = hit.point.z;
                     float z = hit.point.z;
-                    if (z < 0.15f && z > -0.15f)
+                    /*if (z < 0.15f && z > -0.15f)
                     {
                         z = 0;
                     }
@@ -40,19 +42,28 @@ public class SliderObject : MonoBehaviour {
                     else
                     {
                         z = 0.3f;
+                    }*/
+                    if (z > 0.3f)
+                    {
+                        z = 0.3f;
+                    }
+                    else if (z < -0.3f)
+                    {
+                        z = -0.3f;
                     }
                     transform.position = new Vector3(0.4f, 0f, z);
-                    if (z == 0.3f)
+                    float zper = z / 0.3f;
+                    if (zper == 1)
                     {
                         showSarcophage();
                     }
-                    else if (z == 0)
+                    else if (z >= 0)
                     {
-                        showMummy();
+                        showMummy(zper);
                     }
                     else
                     {
-                        showObi();
+                        showObi((1 + zper));
                     }
                 }
             }
@@ -65,9 +76,8 @@ public class SliderObject : MonoBehaviour {
             {
                 if (hit.collider.gameObject.name == "SlideBar")
                 {
-                    //Vector3 fingerPos = hit.point.z;
                     float z = hit.point.z;
-                    if (z < 0.15f && z > -0.15f)
+                    /*if (z < 0.15f && z > -0.15f)
                     {
                         z = 0;
                     }
@@ -78,19 +88,28 @@ public class SliderObject : MonoBehaviour {
                     else
                     {
                         z = 0.3f;
+                    }*/
+                    if (z > 0.3f)
+                    {
+                        z = 0.3f;
+                    }
+                    else if (z < -0.3f)
+                    {
+                        z = -0.3f;
                     }
                     transform.position = new Vector3(0.4f, 0f, z);
-                    if (z == 0.3f)
+                    float zper = z / 0.3f;
+                    if (zper == 1)
                     {
                         showSarcophage();
                     }
-                    else if (z == 0)
+                    else if (z >= 0)
                     {
-                        showMummy();
+                        showMummy(zper);
                     }
                     else
                     {
-                        showObi();
+                        showObi((1 + zper));
                     }
                 }
             }
@@ -99,41 +118,52 @@ public class SliderObject : MonoBehaviour {
 
     void showSarcophage()
     {
-        //ladaoutside.GetComponent<MeshRenderer>().material.shader = Shader.Find("Standard");
-        
-        //ladaoutside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 1.0f);
-        //ladainside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 1.0f);
-        //ladaoutside.GetComponent<MeshRenderer>().enabled = true;
+        /*ladaoutside.GetComponent<MeshRenderer>().enabled = true;
         ladainside.GetComponent<MeshRenderer>().enabled = true;
         mummy.GetComponent<SkinnedMeshRenderer>().enabled = true;
         obi.GetComponent<MeshRenderer>().enabled = true;
+
+        ladaoutside.GetComponent<MeshRenderer>().material.shader = Shader.Find("Standard");
+        ladainside.GetComponent<MeshRenderer>().material.shader = Shader.Find("Standard");
+        //ladaoutside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 1.0f);
+        //ladainside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 1.0f);*/
     }
 
-    void showMummy()
+    void showMummy(float zper)
     {
-        /*Shader shader = Shader.Find("Mobile/Mobile-XrayEffect");
+        ladaoutside.GetComponent<MeshRenderer>().enabled = true;
+        ladainside.GetComponent<MeshRenderer>().enabled = true;
+        mummy.GetComponent<SkinnedMeshRenderer>().enabled = true;
+        //obi.GetComponent<MeshRenderer>().enabled = true;
+        /*
+        Shader shader = Shader.Find("Mobile/Mobile-XrayEffect");
         ladaoutside.GetComponent<MeshRenderer>().material.shader = Shader.Find("Mobile/Mobile-XrayEffect");
         ladainside.GetComponent<MeshRenderer>().material.shader = Shader.Find("Mobile/Mobile-XrayEffect");
-        ladaoutside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 0.3f);
-        ladainside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 0.1f);
-        mummy.GetComponent<SkinnedMeshRenderer>().material.shader = Shader.Find("Standard");*/
+        ladaoutside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", zper);
+        ladainside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", zper);*/
+        mummy.GetComponent<SkinnedMeshRenderer>().material.shader = Shader.Find("Standard");
 
-        //ladaoutside.GetComponent<MeshRenderer>().enabled = false;
-        ladainside.GetComponent<MeshRenderer>().enabled = true;
-        mummy.GetComponent<SkinnedMeshRenderer>().enabled = true;
-        obi.GetComponent<MeshRenderer>().enabled = true;
     }
 
-    void showObi()
+    void showObi(float zper)
     {
-        /*ladaoutside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 0.05f);
-        ladainside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 0.05f);
-        mummy.GetComponent<SkinnedMeshRenderer>().material.shader = Shader.Find("Mobile/Mobile-XrayEffect");
-        mummy.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_Inside", 0.1f);*/
-       
-        //ladaoutside.GetComponent<MeshRenderer>().enabled = false;
+        ladaoutside.GetComponent<MeshRenderer>().enabled = true;
         ladainside.GetComponent<MeshRenderer>().enabled = true;
-        mummy.GetComponent<SkinnedMeshRenderer>().enabled = false;
-        obi.GetComponent<MeshRenderer>().enabled = true;
+        if (zper == 0)
+        {
+            mummy.GetComponent<SkinnedMeshRenderer>().enabled = false;
+        }
+        else
+        {
+            mummy.GetComponent<SkinnedMeshRenderer>().enabled = true;
+        }
+        //obi.GetComponent<MeshRenderer>().enabled = true;
+
+        //ladaoutside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 0f);
+        //ladainside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 0f);
+        mummy.GetComponent<SkinnedMeshRenderer>().material.shader = Shader.Find("Mobile/Mobile-XrayEffect");
+        mummy.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_Inside", zper);
+
+
     }
 }
