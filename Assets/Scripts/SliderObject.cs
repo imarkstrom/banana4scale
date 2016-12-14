@@ -25,11 +25,10 @@ public class SliderObject : MonoBehaviour
 	{
 		if (Input.GetMouseButton (0)) {
 			ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			print (ray);
+
 			float newz = 0;
 			bool didhit = false;
 			if (Physics.Raycast (ray, out hit)) {
-				print (hit.collider.gameObject);
 				if (hit.collider.gameObject == sarkofagbutton) {
 					newz = hit.collider.gameObject.transform.localPosition.z;
 					showSarcophage ();
@@ -51,11 +50,9 @@ public class SliderObject : MonoBehaviour
 		}
 		if (Input.touchCount > 0) {
 			ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			print (ray);
 			float newz = 0;
 			bool didhit = false;
 			if (Physics.Raycast (ray, out hit)) {
-				print (hit.collider.gameObject);
 				if (hit.collider.gameObject == sarkofagbutton) {
 					newz = hit.collider.gameObject.transform.localPosition.z;
 					showSarcophage ();
