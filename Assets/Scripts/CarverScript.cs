@@ -89,7 +89,7 @@ public class CarverScript : MonoBehaviour
 			depthmaskpasstwo.SetActive (true);
 			depthmaskpasstwo.transform.localScale = new Vector3 (maskscale, maskscale, maskscale) * 10.0f;
 			magnifyingglass.transform.localScale = depthmaskpasstwo.transform.localScale / 90f;
-			print (maskscale);
+			//print (maskscale);
 			sm.radius = maskscale * 0.12f;
 		} else {
 			//depthmaskpasstwo.transform.localScale = new Vector3 (200, 200, 1) * 0.25f;
