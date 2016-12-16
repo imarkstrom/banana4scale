@@ -56,7 +56,7 @@ public class SliderObjectContinuous : MonoBehaviour
     }
 
     void calculateLayer(float percent) {
-        if(percent < 0.05) {
+        /*if(percent < 0.05) {
             showSarcophage(0);
         } else if (0.05f <= percent && percent < 0.55f) {
             if (0.45f < percent) { showMummy(0); }
@@ -65,11 +65,34 @@ public class SliderObjectContinuous : MonoBehaviour
         else if (0.55f <= percent) {
             if (0.95f < percent) { showObi(0); }
             else { showObi((1-(percent-0.55f)/0.40f)); };
+        }*/
+        if (percent < 0.05)
+        {
+            showSarcophage(0);
+        }
+        else if (0.05f <= percent && percent < 0.33f)
+        {
+            if (0.23f < percent) { showInnerSarco(0); }
+            else { showInnerSarco((1 - percent / 0.33f)); };
+        }
+        else if (0.33f <= percent && percent < 0.66f)
+        {
+            if (0.56f < percent) { showMummy(0); }
+            else { showMummy((1 - (percent - 0.33f) / 0.33f)); };
+        }
+        else
+        {
+            if (0.95f < percent) { showObi(0); }
+            else { showObi((1 - (percent - 0.66f) / 0.33f)); }
         }
     }
 
     void showSarcophage(float per)
     {
+        ladaoutside.GetComponent<MeshRenderer>().enabled = true;
+        ladaoutside.GetComponent<MeshRenderer>().material.shader = Shader.Find("Standard");
+        ladainside.GetComponent<MeshRenderer>().enabled = true;
+        ladainside.GetComponent<MeshRenderer>().material.shader = Shader.Find("Standard");
         //ladaoutside.GetComponent<MeshRenderer> ().enabled = true;
         //ladainside.GetComponent<MeshRenderer>().enabled = true;
         //mummy.GetComponent<SkinnedMeshRenderer>().enabled = true;
@@ -82,8 +105,27 @@ public class SliderObjectContinuous : MonoBehaviour
         ankh.GetComponent<MeshRenderer>().material.shader = Shader.Find("Standard");
         coins.GetComponent<MeshRenderer>().enabled = true;
         coins.GetComponent<MeshRenderer>().material.shader = Shader.Find("Standard");
+        mummy.GetComponent<SkinnedMeshRenderer>().enabled = true;
+        mummy.GetComponent<SkinnedMeshRenderer>().material.shader = Shader.Find("Standard");
+
     }
 
+    void showInnerSarco(float per)
+    {
+        ankh.GetComponent<MeshRenderer>().enabled = true;
+        ankh.GetComponent<MeshRenderer>().material.shader = Shader.Find("Standard");
+        coins.GetComponent<MeshRenderer>().enabled = true;
+        coins.GetComponent<MeshRenderer>().material.shader = Shader.Find("Standard");
+        mummy.GetComponent<SkinnedMeshRenderer>().enabled = true;
+        mummy.GetComponent<SkinnedMeshRenderer>().material.shader = Shader.Find("Standard");
+
+        ladaoutside.GetComponent<MeshRenderer>().material.shader = Shader.Find("Mobile/Mobile-XrayEffect");
+        ladaoutside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", per);
+        ladaoutside.GetComponent<MeshRenderer>().material.SetFloat("_Rim", 2 * per);
+        ladainside.GetComponent<MeshRenderer>().material.shader = Shader.Find("Mobile/Mobile-XrayEffect");
+        ladainside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", per);
+        ladainside.GetComponent<MeshRenderer>().material.SetFloat("_Rim", 2 * per);
+    }
     void showMummy(float per)
     {
         //ladaoutside.GetComponent<MeshRenderer>().enabled = true;
@@ -110,6 +152,7 @@ public class SliderObjectContinuous : MonoBehaviour
         ankh.GetComponent<MeshRenderer>().material.SetFloat("_Inside", per);
         ankh.GetComponent<MeshRenderer>().material.SetFloat("_Rim", 2*per);
         coins.GetComponent<MeshRenderer>().material.shader = Shader.Find("Mobile/Mobile-XrayEffect");
+        coins.GetComponent<MeshRenderer>().material.SetFloat("_Inside", per);
         coins.GetComponent<MeshRenderer>().material.SetFloat("_Rim", 2 * per);
     }
 
@@ -129,6 +172,6 @@ public class SliderObjectContinuous : MonoBehaviour
         //ladainside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 0f);
         mummy.GetComponent<SkinnedMeshRenderer>().material.shader = Shader.Find("Mobile/Mobile-XrayEffect");
         mummy.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_Inside", zper);
-        mummy.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_Rim", zper);
+        mummy.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_Rim", 2 * zper);
     }
 }
