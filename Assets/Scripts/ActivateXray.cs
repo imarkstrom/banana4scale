@@ -14,10 +14,13 @@ public class ActivateXray : MonoBehaviour
 	public float bigNearClipPlane = 1;
 	private bool pressed = true;
 
+    private float cooldown;
+
 	// Use this for initialization
 	void Start ()
 	{
 		mat.color = Color.green;
+        cooldown = Time.time;
 	}
 	
 	// Update is called once per frame
@@ -29,10 +32,9 @@ public class ActivateXray : MonoBehaviour
 			ray = Camera.main.ScreenPointToRay (Input.GetTouch (0).position);
 
 			if (Physics.Raycast (ray, out hit)) {
-				if (hit.transform.gameObject.name == "Button") {
+				if (hit.transform.gameObject.name == "Button" && Time.time - cooldown > 1.0f) {
 					pressed = !pressed;
-					Debug.Log ("Pressed button");
-
+                    cooldown = Time.time;
 					if (pressed) {
 						carver.MakeActive ();
 						cam.GetComponent<Camera> ().nearClipPlane = bigNearClipPlane;
@@ -50,11 +52,12 @@ public class ActivateXray : MonoBehaviour
 			ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 
 			if (Physics.Raycast (ray, out hit)) {
-				if (hit.transform.gameObject.name == "Button") {
+				if (hit.transform.gameObject.name == "Button" && Time.time - cooldown > 1.0f) {
 					pressed = !pressed;
 					Debug.Log ("Pressed button");
+                    cooldown = Time.time;
 
-					if (pressed) {
+                    if (pressed) {
 						carver.MakeActive ();
 						cam.GetComponent<Camera> ().nearClipPlane = bigNearClipPlane;
 						mat.color = Color.green;
