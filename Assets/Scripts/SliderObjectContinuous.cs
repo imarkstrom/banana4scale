@@ -13,24 +13,25 @@ public class SliderObjectContinuous : MonoBehaviour
     public GameObject mummy;
     public GameObject obi;
     public GameObject sarkofagbutton, mummybutton, obibutton;
+    public GameObject ankh;
 
     // Use this for initialization
     void Start()
     {
-
+        GameObject.Find("ChildTargets").SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0)/* || Input.touchCount > 0*/)
+        if (Input.GetMouseButton(0) || Input.touchCount > 0)
         {
             if (Input.GetMouseButton(0))
             {
                 ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            }/* else {
+            } else {
                 ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-            }*/
+            }
 
             float newz = 0;
             float perz = 0;
@@ -42,7 +43,6 @@ public class SliderObjectContinuous : MonoBehaviour
                     newz = hit.point.y - 1.156f;
                     float end = -1.16f - 1.156f;
                     perz = newz / end;
-                    Debug.Log(perz);
                     calculateLayer(perz);
                     didhit = true;
                 }
@@ -57,40 +57,42 @@ public class SliderObjectContinuous : MonoBehaviour
     void calculateLayer(float percent) {
         if(percent < 0.05) {
             showSarcophage(0);
-        } else if (0.05f <= percent && percent < 0.33f) {
-            if (0.23f < percent) { showObi(0); }
-            else { showObi((1-percent/0.33f)); };
+        } else if (0.05f <= percent && percent < 0.55f) {
+            if (0.45f < percent) { showMummy(0); }
+            else { showMummy((1-percent/0.40f)); };
         }
-        else if (0.33f <= percent && percent < 0.66f) {
-            if (0.56f < percent) { showObi(0); }
-            else { showObi((1-(percent-0.33f)/0.33f)); };
-        }
-        else {
+        else if (0.55f <= percent) {
             if (0.95f < percent) { showObi(0); }
-            else { showObi((1-(percent-0.66f)/0.33f)); }
+            else { showObi((1-(percent-0.55f)/0.40f)); };
         }
     }
 
     void showSarcophage(float per)
     {
         //ladaoutside.GetComponent<MeshRenderer> ().enabled = true;
-        ladainside.GetComponent<MeshRenderer>().enabled = true;
-        mummy.GetComponent<SkinnedMeshRenderer>().enabled = true;
-        obi.GetComponent<MeshRenderer>().enabled = true;
-        Debug.Log("sacro");
+        //ladainside.GetComponent<MeshRenderer>().enabled = true;
+        //mummy.GetComponent<SkinnedMeshRenderer>().enabled = true;
+        //ankh.GetComponent<MeshRenderer>().enabled = true;
         //ladaoutside.GetComponent<MeshRenderer>().material.shader = Shader.Find("Standard");
         //ladainside.GetComponent<MeshRenderer>().material.shader = Shader.Find("Standard");
         //ladaoutside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 1.0f);
         //ladainside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 1.0f);
+        ankh.GetComponent<MeshRenderer>().enabled = true;
+        ankh.GetComponent<MeshRenderer>().material.shader = Shader.Find("Standard");
     }
 
     void showMummy(float per)
     {
-        Debug.Log("mummy");
-        ladaoutside.GetComponent<MeshRenderer>().enabled = true;
-        ladainside.GetComponent<MeshRenderer>().enabled = true;
+        //ladaoutside.GetComponent<MeshRenderer>().enabled = true;
+        //ladainside.GetComponent<MeshRenderer>().enabled = true;
         mummy.GetComponent<SkinnedMeshRenderer>().enabled = true;
         //obi.GetComponent<MeshRenderer>().enabled = true;
+        if (per == 0)
+        {
+            ankh.GetComponent<MeshRenderer>().enabled = false;
+        } else {
+            ankh.GetComponent<MeshRenderer>().enabled = true;
+        }
         /*
         Shader shader = Shader.Find("Mobile/Mobile-XrayEffect");
         ladaoutside.GetComponent<MeshRenderer>().material.shader = Shader.Find("Mobile/Mobile-XrayEffect");
@@ -98,25 +100,24 @@ public class SliderObjectContinuous : MonoBehaviour
         ladaoutside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", zper);
         ladainside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", zper);*/
         mummy.GetComponent<SkinnedMeshRenderer>().material.shader = Shader.Find("Standard");
-
+        ankh.GetComponent<MeshRenderer>().material.shader = Shader.Find("Mobile/Mobile-XrayEffect");
+        ankh.GetComponent<MeshRenderer>().material.SetFloat("_Inside", per);
     }
 
     void showObi(float zper)
     {
         //ladaoutside.GetComponent<MeshRenderer>().enabled = true;
         //ladainside.GetComponent<MeshRenderer>().enabled = true;
+        ankh.GetComponent<MeshRenderer>().enabled = false;
         if (zper == 0) {
             mummy.GetComponent<SkinnedMeshRenderer>().enabled = false;
         } else {
             mummy.GetComponent<SkinnedMeshRenderer>().enabled = true;
         }
         //obi.GetComponent<MeshRenderer>().enabled = true;
-        Debug.Log("obi");
         //ladaoutside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 0f);
         //ladainside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 0f);
         mummy.GetComponent<SkinnedMeshRenderer>().material.shader = Shader.Find("Mobile/Mobile-XrayEffect");
         mummy.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_Inside", zper);
-
-
     }
 }
