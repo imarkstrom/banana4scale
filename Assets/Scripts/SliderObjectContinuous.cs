@@ -14,6 +14,7 @@ public class SliderObjectContinuous : MonoBehaviour
     public GameObject obi;
     public GameObject sarkofagbutton, mummybutton, obibutton;
     public GameObject ankh;
+    public GameObject coins;
 
     // Use this for initialization
     void Start()
@@ -79,6 +80,8 @@ public class SliderObjectContinuous : MonoBehaviour
         //ladainside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 1.0f);
         ankh.GetComponent<MeshRenderer>().enabled = true;
         ankh.GetComponent<MeshRenderer>().material.shader = Shader.Find("Standard");
+        coins.GetComponent<MeshRenderer>().enabled = true;
+        coins.GetComponent<MeshRenderer>().material.shader = Shader.Find("Standard");
     }
 
     void showMummy(float per)
@@ -90,8 +93,11 @@ public class SliderObjectContinuous : MonoBehaviour
         if (per == 0)
         {
             ankh.GetComponent<MeshRenderer>().enabled = false;
-        } else {
+            coins.GetComponent<MeshRenderer>().enabled = false;
+        }
+        else {
             ankh.GetComponent<MeshRenderer>().enabled = true;
+            coins.GetComponent<MeshRenderer>().enabled = true;
         }
         /*
         Shader shader = Shader.Find("Mobile/Mobile-XrayEffect");
@@ -102,6 +108,9 @@ public class SliderObjectContinuous : MonoBehaviour
         mummy.GetComponent<SkinnedMeshRenderer>().material.shader = Shader.Find("Standard");
         ankh.GetComponent<MeshRenderer>().material.shader = Shader.Find("Mobile/Mobile-XrayEffect");
         ankh.GetComponent<MeshRenderer>().material.SetFloat("_Inside", per);
+        ankh.GetComponent<MeshRenderer>().material.SetFloat("_Rim", 2*per);
+        coins.GetComponent<MeshRenderer>().material.shader = Shader.Find("Mobile/Mobile-XrayEffect");
+        coins.GetComponent<MeshRenderer>().material.SetFloat("_Rim", 2 * per);
     }
 
     void showObi(float zper)
@@ -109,6 +118,7 @@ public class SliderObjectContinuous : MonoBehaviour
         //ladaoutside.GetComponent<MeshRenderer>().enabled = true;
         //ladainside.GetComponent<MeshRenderer>().enabled = true;
         ankh.GetComponent<MeshRenderer>().enabled = false;
+        coins.GetComponent<MeshRenderer>().enabled = false;
         if (zper == 0) {
             mummy.GetComponent<SkinnedMeshRenderer>().enabled = false;
         } else {
@@ -119,5 +129,6 @@ public class SliderObjectContinuous : MonoBehaviour
         //ladainside.GetComponent<MeshRenderer>().material.SetFloat("_Inside", 0f);
         mummy.GetComponent<SkinnedMeshRenderer>().material.shader = Shader.Find("Mobile/Mobile-XrayEffect");
         mummy.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_Inside", zper);
+        mummy.GetComponent<SkinnedMeshRenderer>().material.SetFloat("_Rim", zper);
     }
 }

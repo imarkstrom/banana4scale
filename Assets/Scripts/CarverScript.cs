@@ -46,7 +46,7 @@ public class CarverScript : MonoBehaviour
 			cam.nearClipPlane = 0.01f;
 			magnifyingglass.SetActive (true);
 		} else {
-			cam.nearClipPlane = 1.5f;
+			cam.nearClipPlane = 2.5f;
 			magnifyingglass.SetActive (false);
 		}
 		Vector3 mummyposition = mummy.transform.position;
